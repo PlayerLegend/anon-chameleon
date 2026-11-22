@@ -2,20 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crey55uttilnw"
-path.s3tc="res://.godot/imported/PinkiePie_pinkie cutie mark.png-6769c825711a94f416641895ae2c94f3.s3tc.ctex"
+uid="uid://cwdopak7yh3pu"
+path.s3tc="res://.godot/imported/PinkiePieCutieMark.png-0f0bdc889a9c36a374495bb0477a5876.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "f2d66d467f838fa0812714b32db5ed98"
-}
+generator_parameters={}
 
 [deps]
 
-source_file="res://PinkiePie_pinkie cutie mark.png"
-dest_files=["res://.godot/imported/PinkiePie_pinkie cutie mark.png-6769c825711a94f416641895ae2c94f3.s3tc.ctex"]
+source_file="res://textures/PinkiePieCutieMark.png"
+dest_files=["res://.godot/imported/PinkiePieCutieMark.png-0f0bdc889a9c36a374495bb0477a5876.s3tc.ctex"]
 
 [params]
 

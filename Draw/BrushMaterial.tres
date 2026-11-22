@@ -8,4 +8,4 @@ shader_parameter/brush_pos = Vector2(0, 0)
 shader_parameter/radius = 0.02
 shader_parameter/out_size = Vector2(1024, 1024)
 shader_parameter/quad_px = 3.0
-shader_parameter/brush_color = Color(1, 0, 0, 1)
+shader_parameter/brush_color = Color(0.46053147, 0.44450006, 1, 1)
