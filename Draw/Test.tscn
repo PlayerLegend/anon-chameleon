@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://tc04yg80cioy"]
+
+[ext_resource type="Material" uid="uid://byhjrfgmuvksj" path="res://Draw/ScreenMaterial.tres" id="1_8bvry"]
+[ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="1_e5olu"]
+[ext_resource type="Script" uid="uid://bo0u8hqmb7j8k" path="res://Draw/uv_subviewport.gd" id="2_db8hs"]
+[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/UV.tres" id="2_g5sm8"]
+[ext_resource type="Script" uid="uid://bn5vxmixxj6e" path="res://Draw/test.gd" id="2_lwbk3"]
+[ext_resource type="Material" uid="uid://dlpxssuix8c1h" path="res://Draw/BrushMaterial.tres" id="3_j4bbs"]
+[ext_resource type="Script" uid="uid://b50qcqnfqntgk" path="res://Draw/sync_camera.gd" id="3_xck7d"]
+[ext_resource type="Script" uid="uid://hpu0rhj1itk0" path="res://Draw/brush_subviewport.gd" id="6_512h5"]
+[ext_resource type="Script" uid="uid://bu05xvy10pysh" path="res://Draw/brush_mesh.gd" id="9_xj6df"]
+
+[node name="Node3D" type="ColorRect" unique_id=923955903 node_paths=PackedStringArray("brush_subviewport", "uv_subviewport")]
+material = ExtResource("1_8bvry")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_lwbk3")
+brush_material = ExtResource("3_j4bbs")
+brush_subviewport = NodePath("BrushSubviewport")
+uv_subviewport = NodePath("BrushSubviewport/UVSubviewport")
+screen_material = ExtResource("1_8bvry")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1453481594]
+transform = Transform3D(0.24791919, -0.36628497, 0.8968676, 0.0030187294, 0.926057, 0.37737164, -0.96877605, -0.09085026, 0.23069301, 0.8801533, 1.0183583, 0.40788692)
+current = true
+
+[node name="PinkiePie" parent="." unique_id=78499371 instance=ExtResource("1_e5olu")]
+
+[node name="Circle" parent="PinkiePie/rig/Skeleton3D" parent_id_path=PackedInt32Array(78499371, 1017653095) index="0" unique_id=2115512435]
+surface_material_override/0 = ExtResource("2_g5sm8")
+
+[node name="BrushSubviewport" type="SubViewport" parent="." unique_id=715715699]
+script = ExtResource("6_512h5")
+
+[node name="UVSubviewport" type="SubViewport" parent="BrushSubviewport" unique_id=2102543581]
+script = ExtResource("2_db8hs")
+
+[node name="Camera3D" type="Camera3D" parent="BrushSubviewport/UVSubviewport" unique_id=1954128165 node_paths=PackedStringArray("copy")]
+current = true
+script = ExtResource("3_xck7d")
+copy = NodePath("../../../Camera3D")
+
+[node name="BrushMesh" type="MeshInstance2D" parent="BrushSubviewport" unique_id=1212448061]
+material = ExtResource("3_j4bbs")
+script = ExtResource("9_xj6df")
+
+[editable path="PinkiePie"]
