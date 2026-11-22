@@ -19,6 +19,7 @@ func _deferred_set_cameras(value: Camera3D):
 
 @export var camera: Camera3D:
     set(value):
+        camera = value
         _deferred_set_cameras.call_deferred(value)
 
 func _deferred_set_mesh(value: MeshInstance3D):
