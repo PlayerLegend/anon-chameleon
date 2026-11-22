@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://tc04yg80cioy"]
+
+[ext_resource type="Material" uid="uid://byhjrfgmuvksj" path="res://Draw/ScreenMaterial.tres" id="1_8bvry"]
+[ext_resource type="Script" uid="uid://bo0u8hqmb7j8k" path="res://Draw/depth_viewport.gd" id="2_db8hs"]
+[ext_resource type="Script" uid="uid://bn5vxmixxj6e" path="res://Draw/draw_tex.gd" id="2_lwbk3"]
+[ext_resource type="Script" uid="uid://fvegc0p7sh35" path="res://Draw/paint_viewport.gd" id="3_4a8qm"]
+[ext_resource type="Script" uid="uid://bh5xa6og6x26s" path="res://Draw/mesh_instance_sync.gd" id="6_hls02"]
+[ext_resource type="Material" uid="uid://c3c5x0ovqwe4i" path="res://Draw/DepthMaterial.tres" id="6_jfyxp"]
+[ext_resource type="Material" uid="uid://c8nk432t44g07" path="res://Draw/UnwrapMaterial.tres" id="8_grniy"]
+[ext_resource type="Script" uid="uid://b8poh1j58bl78" path="res://Draw/depth_camera.gd" id="8_xj6df"]
+[ext_resource type="Script" uid="uid://dn5aahig2ey0w" path="res://Draw/unwrap_camera.gd" id="9_xj6df"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jfyxp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a6lpa"]
+
+[node name="DrawTex" type="Node3D" unique_id=929948092]
+script = ExtResource("2_lwbk3")
+screen_material = ExtResource("1_8bvry")
+unwrap_material = ExtResource("8_grniy")
+
+[node name="PaintViewport" type="SubViewport" parent="." unique_id=1392031012]
+own_world_3d = true
+script = ExtResource("3_4a8qm")
+
+[node name="UnwrapCamera" type="Camera3D" parent="PaintViewport" unique_id=860769365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8651321)
+current = true
+script = ExtResource("9_xj6df")
+
+[node name="UnwrapMesh" type="MeshInstance3D" parent="PaintViewport" unique_id=1892036746]
+material_override = ExtResource("8_grniy")
+mesh = SubResource("CapsuleMesh_jfyxp")
+script = ExtResource("6_hls02")
+metadata/_custom_type_script = "uid://bh5xa6og6x26s"
+
+[node name="DepthViewport" type="SubViewport" parent="PaintViewport" unique_id=2102543581]
+own_world_3d = true
+script = ExtResource("2_db8hs")
+
+[node name="DepthCamera" type="Camera3D" parent="PaintViewport/DepthViewport" unique_id=1514584059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4635042)
+current = true
+script = ExtResource("8_xj6df")
+metadata/_custom_type_script = "uid://b50qcqnfqntgk"
+
+[node name="DepthMesh" type="MeshInstance3D" parent="PaintViewport/DepthViewport" unique_id=2141861764]
+material_override = ExtResource("6_jfyxp")
+mesh = SubResource("CapsuleMesh_a6lpa")
+script = ExtResource("6_hls02")
+metadata/_custom_type_script = "uid://bh5xa6og6x26s"
+
+[node name="DebugScreen" type="ColorRect" parent="." unique_id=1281994684]
+material = ExtResource("1_8bvry")
+offset_right = 345.0
+offset_bottom = 205.0

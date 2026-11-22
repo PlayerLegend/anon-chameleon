@@ -3,42 +3,18 @@ extends Node3D
 @export var pan_center: Node3D
 @export var pan_camera: Camera3D
 
-@export var brush_material: ShaderMaterial
-@export var brush_subviewport: SubViewport
-@export var uv_subviewport: SubViewport
-@export var screen_material: ShaderMaterial
-@export var uv_color_material: ShaderMaterial
-
-func _ready():
-    assert(brush_material)
-    brush_material.set_shader_parameter("uv_texture", uv_subviewport.get_texture())
-    screen_material.set_shader_parameter("screen_render", brush_subviewport.get_texture())
-    brush_material.set_shader_parameter("out_size", Vector2(brush_subviewport.size))
-    uv_color_material.set_shader_parameter("paint_tex", brush_subviewport.get_texture())
-    
-func _process_painting():
-    var painting := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-
-    if painting:
-        brush_subviewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-    elif brush_subviewport.render_target_update_mode == SubViewport.UPDATE_ALWAYS:
-        brush_subviewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-        
-    if not painting:
-        return
-
-    # Mouse position normalised to 0..1 in the same space as uv_map
-    var vp := get_viewport()
-    var pos := vp.get_mouse_position() / Vector2(vp.get_visible_rect().size)
-
-    brush_material.set_shader_parameter("brush_pos", pos)
-    print("Set brush pos ", pos)
-
 @export var orbit_sensitivity := 0.005   # radians per pixel
 @export var min_pitch_deg := -85.0
 @export var max_pitch_deg := 85.0
 var _orbit_last_mouse := Vector2.ZERO
 var _was_orbiting := false
+@onready var draw_tex: DrawTex = $DrawTex
+
+func _process_painting():
+    if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+        draw_tex.start_painting()
+    else:
+        draw_tex.stop_painting()
 
 func _process_orbit():
     var orbiting := Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)

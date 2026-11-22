@@ -1,59 +1,36 @@
-[gd_scene format=3 uid="uid://tc04yg80cioy"]
+[gd_scene format=3 uid="uid://dk6x0t6tydaqe"]
 
-[ext_resource type="Material" uid="uid://byhjrfgmuvksj" path="res://Draw/ScreenMaterial.tres" id="1_8bvry"]
 [ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="1_e5olu"]
-[ext_resource type="Script" uid="uid://bo0u8hqmb7j8k" path="res://Draw/uv_subviewport.gd" id="2_db8hs"]
-[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/UV-Color.tres" id="2_g5sm8"]
-[ext_resource type="Script" uid="uid://bn5vxmixxj6e" path="res://Draw/test.gd" id="2_lwbk3"]
-[ext_resource type="Material" uid="uid://dlpxssuix8c1h" path="res://Draw/BrushMaterial.tres" id="3_j4bbs"]
-[ext_resource type="Script" uid="uid://b50qcqnfqntgk" path="res://Draw/sync_camera.gd" id="3_xck7d"]
-[ext_resource type="Script" uid="uid://hpu0rhj1itk0" path="res://Draw/brush_subviewport.gd" id="6_512h5"]
-[ext_resource type="Script" uid="uid://bu05xvy10pysh" path="res://Draw/brush_mesh.gd" id="9_xj6df"]
+[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/PaintedMesh.tres" id="2_g5sm8"]
+[ext_resource type="Script" uid="uid://cgexjgprkgq77" path="res://Draw/test.gd" id="2_lwbk3"]
+[ext_resource type="PackedScene" uid="uid://tc04yg80cioy" path="res://Draw/DrawTex.tscn" id="4_g5sm8"]
 
-[node name="Node3D" type="Node3D" unique_id=929948092 node_paths=PackedStringArray("pan_center", "pan_camera", "brush_subviewport", "uv_subviewport")]
+[node name="Node3D" type="Node3D" unique_id=929948092 node_paths=PackedStringArray("pan_center", "pan_camera")]
 script = ExtResource("2_lwbk3")
 pan_center = NodePath("Marker3D")
 pan_camera = NodePath("Camera3D")
-brush_material = ExtResource("3_j4bbs")
-brush_subviewport = NodePath("BrushSubviewport")
-uv_subviewport = NodePath("BrushSubviewport/UVSubviewport")
-screen_material = ExtResource("1_8bvry")
-uv_color_material = ExtResource("2_g5sm8")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1453481594]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1114062604]
 transform = Transform3D(0.24791919, -0.36628497, 0.8968676, 0.0030187294, 0.926057, 0.37737164, -0.96877605, -0.09085026, 0.23069301, 0.8801533, 1.0183583, 0.40788692)
 current = true
 
-[node name="PinkiePie" parent="." unique_id=78499371 instance=ExtResource("1_e5olu")]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=879881846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3389665, 0.688185, 0)
 
-[node name="Circle" parent="PinkiePie/rig/Skeleton3D" parent_id_path=PackedInt32Array(78499371, 1017653095) index="0" unique_id=2115512435]
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1061479994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0763414, 1.37637, 0)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=393119402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33536866, 0)
+
+[node name="PinkiePie" parent="." unique_id=1236428650 instance=ExtResource("1_e5olu")]
+
+[node name="Circle" parent="PinkiePie/rig/Skeleton3D" parent_id_path=PackedInt32Array(1236428650, 258049765) index="0" unique_id=787778609]
 layers = 524289
 surface_material_override/0 = ExtResource("2_g5sm8")
 
-[node name="BrushSubviewport" type="SubViewport" parent="." unique_id=715715699]
-size = Vector2i(2048, 2048)
-script = ExtResource("6_512h5")
-
-[node name="UVSubviewport" type="SubViewport" parent="BrushSubviewport" unique_id=2102543581]
-script = ExtResource("2_db8hs")
-
-[node name="UVCamera" type="Camera3D" parent="BrushSubviewport/UVSubviewport" unique_id=1954128165 node_paths=PackedStringArray("copy")]
-current = true
-script = ExtResource("3_xck7d")
-copy = NodePath("../../../Camera3D")
-uv_pass = 524288
-
-[node name="BrushMesh" type="MeshInstance2D" parent="BrushSubviewport" unique_id=1212448061]
-material = ExtResource("3_j4bbs")
-script = ExtResource("9_xj6df")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=699389730]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3389665, 0.688185, 0)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1672214737]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0763414, 1.37637, 0)
-
-[node name="Marker3D" type="Marker3D" parent="." unique_id=28781436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33536866, 0)
+[node name="DrawTex" parent="." unique_id=2093840109 node_paths=PackedStringArray("camera", "paint_mesh") instance=ExtResource("4_g5sm8")]
+camera = NodePath("../Camera3D")
+paint_mesh = NodePath("../PinkiePie/rig/Skeleton3D/Circle")
 
 [editable path="PinkiePie"]

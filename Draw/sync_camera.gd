@@ -1,13 +1,14 @@
+class_name SyncCamera
 extends Camera3D
 
-@export var copy: Camera3D
-@export_flags_3d_render var uv_pass
-
-func _ready():
-    cull_mask = uv_pass
+@export var copy: Camera3D:
+    set(value):
+        copy = value
+        process_priority = copy.process_priority + 1
 
 func _process(_delta: float):
-    global_transform = copy.global_transform
-    fov = copy.fov
-    near = copy.near
-    far = copy.far
+    if copy:
+        global_transform = copy.global_transform
+        fov = copy.fov
+        near = copy.near
+        far = copy.far
