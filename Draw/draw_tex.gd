@@ -24,13 +24,15 @@ func _deferred_set_cameras(value: Camera3D):
 func _deferred_set_mesh(value: MeshInstance3D):
     depth_mesh.copy = value
     unwrap_mesh.copy = value
-    var old_mat = value.get_active_material(0)
+    var old_mat = value.mesh.surface_get_material(0)
 
     if old_mat is StandardMaterial3D:
         var new_material: ShaderMaterial = painted_mesh_material.duplicate()
+        new_material.set_shader_parameter("base_albedo", old_mat.albedo_texture)
         new_material.set_shader_parameter("paint_albedo", paint_viewport.get_texture())
-
-    
+        value.material_override = new_material
+    else:
+        assert(false)
 
 @export var paint_mesh: MeshInstance3D:
     set(value):

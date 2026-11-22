@@ -1,9 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://c2eydaw0d8owf"]
 
-[ext_resource type="Shader" uid="uid://d4ibavbipfm5o" path="res://Draw/PaintedMesh.gdshader" id="1_8ph0r"]
-[ext_resource type="Texture2D" uid="uid://cwdopak7yh3pu" path="res://textures/PinkiePieCutieMark.png" id="2_8ui7g"]
+[ext_resource type="Shader" uid="uid://d4ibavbipfm5o" path="res://Draw/PaintedMesh.gdshader" id="1_lw6t1"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_8ph0r")
-shader_parameter/base_albedo = ExtResource("2_8ui7g")
+shader = ExtResource("1_lw6t1")
