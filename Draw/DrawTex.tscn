@@ -29,6 +29,7 @@ offset_bottom = 205.0
 
 [node name="AccumulateViewport" type="SubViewport" parent="." unique_id=1864475714]
 own_world_3d = true
+size = Vector2i(2048, 2048)
 script = ExtResource("5_a6lpa")
 
 [node name="PaintViewport" type="SubViewport" parent="AccumulateViewport" unique_id=1392031012]
