@@ -9,8 +9,7 @@
 [ext_resource type="Script" uid="uid://bh5xa6og6x26s" path="res://Draw/mesh_instance_sync.gd" id="6_hls02"]
 [ext_resource type="Material" uid="uid://c3c5x0ovqwe4i" path="res://Draw/DepthMaterial.tres" id="6_jfyxp"]
 [ext_resource type="Material" uid="uid://c8nk432t44g07" path="res://Draw/UnwrapMaterial.tres" id="8_grniy"]
-[ext_resource type="Script" uid="uid://b8poh1j58bl78" path="res://Draw/depth_camera.gd" id="8_xj6df"]
-[ext_resource type="Script" uid="uid://dn5aahig2ey0w" path="res://Draw/unwrap_camera.gd" id="9_xj6df"]
+[ext_resource type="Script" uid="uid://b50qcqnfqntgk" path="res://Draw/sync_camera.gd" id="9_a6lpa"]
 [ext_resource type="Material" uid="uid://d0tk6ov0r5ulm" path="res://Draw/StampRectGrow.tres" id="12_p6qm5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jfyxp"]
@@ -37,7 +36,6 @@ script = ExtResource("3_4a8qm")
 [node name="UnwrapCamera" type="Camera3D" parent="AccumulateViewport/PaintViewport" unique_id=860769365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8651321)
 current = true
-script = ExtResource("9_xj6df")
 
 [node name="UnwrapMesh" type="MeshInstance3D" parent="AccumulateViewport/PaintViewport" unique_id=1892036746]
 material_override = ExtResource("8_grniy")
@@ -53,7 +51,7 @@ unwrap_material = ExtResource("8_grniy")
 [node name="DepthCamera" type="Camera3D" parent="AccumulateViewport/PaintViewport/DepthViewport" unique_id=1514584059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4635042)
 current = true
-script = ExtResource("8_xj6df")
+script = ExtResource("9_a6lpa")
 metadata/_custom_type_script = "uid://b50qcqnfqntgk"
 
 [node name="DepthMesh" type="MeshInstance3D" parent="AccumulateViewport/PaintViewport/DepthViewport" unique_id=2141861764]

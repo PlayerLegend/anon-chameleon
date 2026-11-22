@@ -1,14 +1,10 @@
 class_name DrawTex
 extends Node3D
 
-@onready var accumulate_viewport: SubViewport = $AccumulateViewport
-@onready var paint_viewport: SubViewport = $AccumulateViewport/PaintViewport
-@onready var unwrap_camera: Camera3D = $AccumulateViewport/PaintViewport/UnwrapCamera
-@onready var unwrap_mesh: MeshInstanceSync = $AccumulateViewport/PaintViewport/UnwrapMesh
-@onready var depth_viewport: SubViewport = $AccumulateViewport/PaintViewport/DepthViewport
 @onready var depth_camera: SyncCamera = $AccumulateViewport/PaintViewport/DepthViewport/DepthCamera
 @onready var depth_mesh: MeshInstanceSync = $AccumulateViewport/PaintViewport/DepthViewport/DepthMesh
-@onready var stamp_rect: TextureRect = $AccumulateViewport/StampRect
+@onready var unwrap_mesh: MeshInstanceSync = $AccumulateViewport/PaintViewport/UnwrapMesh
+@onready var accumulate_viewport: SubViewport = $AccumulateViewport
 
 @onready var debug_screen: ColorRect = $DebugScreen
 
@@ -56,7 +52,6 @@ func _get_cursor_uv() -> Vector2:
     return cursor_uv
 
 func _process(_delta: float) -> void:
-    paint_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 
     var uv := _get_cursor_uv()
     unwrap_material.set_shader_parameter("cursor_uv", uv)
@@ -70,16 +65,8 @@ func _process(_delta: float) -> void:
         unwrap_material.set_shader_parameter("main_cam_pos", xform.origin)
         unwrap_material.set_shader_parameter("main_cam_far", camera.far)
         
-var painting: bool
-
 func start_painting():
-    if not painting:
-        paint_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-        accumulate_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-        painting = true
+    accumulate_viewport.start_painting()
 
 func stop_painting():
-    if painting:
-        paint_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-        accumulate_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-        painting = false
+    accumulate_viewport.stop_painting()
