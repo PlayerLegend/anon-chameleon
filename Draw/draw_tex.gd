@@ -1,13 +1,15 @@
 class_name DrawTex
 extends Node3D
 
-@onready var unwrap_camera: Camera3D = $PaintViewport/UnwrapCamera
-@onready var depth_camera: SyncCamera = $PaintViewport/DepthViewport/DepthCamera
+@onready var accumulate_viewport: SubViewport = $AccumulateViewport
+@onready var paint_viewport: SubViewport = $AccumulateViewport/PaintViewport
+@onready var unwrap_camera: Camera3D = $AccumulateViewport/PaintViewport/UnwrapCamera
+@onready var unwrap_mesh: MeshInstanceSync = $AccumulateViewport/PaintViewport/UnwrapMesh
+@onready var depth_viewport: SubViewport = $AccumulateViewport/PaintViewport/DepthViewport
+@onready var depth_camera: SyncCamera = $AccumulateViewport/PaintViewport/DepthViewport/DepthCamera
+@onready var depth_mesh: MeshInstanceSync = $AccumulateViewport/PaintViewport/DepthViewport/DepthMesh
+@onready var stamp_rect: TextureRect = $AccumulateViewport/StampRect
 
-@onready var paint_viewport: SubViewport = $PaintViewport
-@onready var depth_viewport: SubViewport = $PaintViewport/DepthViewport
-@onready var unwrap_mesh: MeshInstanceSync = $PaintViewport/UnwrapMesh
-@onready var depth_mesh: MeshInstanceSync = $PaintViewport/DepthViewport/DepthMesh
 @onready var debug_screen: ColorRect = $DebugScreen
 
 @export var screen_material: ShaderMaterial
@@ -30,7 +32,7 @@ func _deferred_set_mesh(value: MeshInstance3D):
     if old_mat is StandardMaterial3D:
         var new_material: ShaderMaterial = painted_mesh_material.duplicate()
         new_material.set_shader_parameter("base_albedo", old_mat.albedo_texture)
-        new_material.set_shader_parameter("paint_albedo", paint_viewport.get_texture())
+        new_material.set_shader_parameter("paint_albedo", accumulate_viewport.get_texture())
         value.material_override = new_material
     else:
         assert(false)
@@ -62,20 +64,23 @@ func _process(_delta: float) -> void:
         unwrap_material.set_shader_parameter("main_cam_far", camera.far)
         
 func _ready():
+    paint_viewport.size = accumulate_viewport.size
     unwrap_material.set_shader_parameter("depth_texture", depth_viewport.get_texture())
     screen_material.set_shader_parameter("screen_render", paint_viewport.get_texture())
+    
+    stamp_rect.texture = paint_viewport.get_texture()
+    stamp_rect.size = Vector2(accumulate_viewport.size)
 
 var painting: bool
 
 func start_painting():
-    return
     if not painting:
         paint_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+        accumulate_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
         painting = true
-    
+
 func stop_painting():
-    return
     if painting:
         paint_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+        accumulate_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
         painting = false
-    
