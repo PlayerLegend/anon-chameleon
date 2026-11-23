@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dk6x0t6tydaqe"]
 
 [ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="1_e5olu"]
-[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/PaintedMesh.tres" id="2_g5sm8"]
+[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/PaintedMeshBase.tres" id="2_g5sm8"]
 [ext_resource type="Script" uid="uid://cgexjgprkgq77" path="res://Draw/test.gd" id="2_lwbk3"]
 [ext_resource type="PackedScene" uid="uid://tc04yg80cioy" path="res://Draw/DrawTex.tscn" id="4_g5sm8"]
 
@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33536866, 0)
 
 [node name="PinkiePie" parent="." unique_id=1236428650 instance=ExtResource("1_e5olu")]
 
-[node name="Circle" parent="PinkiePie/rig/Skeleton3D" parent_id_path=PackedInt32Array(1236428650, 343098659) index="0" unique_id=1439431780]
+[node name="Circle" parent="PinkiePie/rig/Skeleton3D" parent_id_path=PackedInt32Array(1236428650, 1501151265) index="0" unique_id=445149534]
 layers = 524289
 surface_material_override/0 = ExtResource("2_g5sm8")
 
