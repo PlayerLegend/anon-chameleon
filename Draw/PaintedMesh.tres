@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://c2eydaw0d8owf"]
-
-[ext_resource type="Shader" uid="uid://d4ibavbipfm5o" path="res://Draw/PaintedMesh.gdshader" id="1_lw6t1"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_lw6t1")

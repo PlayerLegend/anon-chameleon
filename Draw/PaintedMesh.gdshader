@@ -5,6 +5,6 @@ uniform sampler2D paint_albedo : source_color, filter_linear, hint_default_trans
 
 void fragment() {
     vec3 base = texture(base_albedo, UV).rgb;
-    vec4 p = texture(paint_albedo, UV);
-    ALBEDO = mix(base, p.rgb, p.a);
+    vec4 paint = texture(paint_albedo, UV);
+    ALBEDO = mix(base, paint.rgb, paint.a);
 }
