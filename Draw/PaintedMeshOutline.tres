@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bfv06ywknvio5"]
+
+[ext_resource type="Shader" uid="uid://dj1ariamduypl" path="res://Draw/PaintedMeshOutline.gdshader" id="1_a2dag"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_a2dag")
+shader_parameter/outline_tint = Color(0.49868423, 0.072676726, 0.48768663, 1)
