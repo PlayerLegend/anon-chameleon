@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmmge3ud41fm0"]
+
+[ext_resource type="Script" uid="uid://bq8erinljinyc" path="res://Player/Walk/test_anim.gd" id="1_dn1jn"]
+[ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="2_50b32"]
+[ext_resource type="PackedScene" uid="uid://d3th86awp2jcj" path="res://Player/Walk/PlayerWalkController.tscn" id="2_wckxs"]
+
+[node name="TestAnim" type="Node3D" unique_id=2072130138]
+script = ExtResource("1_dn1jn")
+player_model_scene = ExtResource("2_50b32")
+
+[node name="PlayerWalkController" parent="." unique_id=1263208952 instance=ExtResource("2_wckxs")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=300250874]
+transform = Transform3D(0.40869334, -0.43579942, 0.8019032, 0.00081434916, 0.87880635, 0.47717798, -0.9126714, -0.19436641, 0.35951725, 0.67694515, 1.2374606, 0.53367245)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1470364981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1016773, 0.6684581)
