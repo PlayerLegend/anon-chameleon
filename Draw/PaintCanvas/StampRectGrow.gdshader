@@ -1,4 +1,5 @@
 shader_type canvas_item;
+render_mode blend_premul_alpha;
 
 uniform int radius : hint_range(0, 8) = 2;
 

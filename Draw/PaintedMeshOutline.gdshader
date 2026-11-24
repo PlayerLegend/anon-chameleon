@@ -9,5 +9,6 @@ void fragment() {
     //if (paint.a < 0.5)
         //discard;
     vec3 base = texture(base_albedo, UV).rgb;
-    ALBEDO = mix(base, (vec4(paint.rgb, 1.0) * outline_tint).rgb, paint.a);
+    //ALBEDO = mix(base, (vec4(paint.rgb, 1.0) * outline_tint).rgb, paint.a);
+    ALBEDO = base * (1.0 - paint.a) + outline_tint.rgb * paint.a;
 }

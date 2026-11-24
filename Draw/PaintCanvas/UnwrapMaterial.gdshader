@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, cull_disabled;
+render_mode unshaded, cull_disabled, blend_premul_alpha;
 
 #include "res://Draw/WorldPositionShader/WorldPosition.gdshaderinc"
 

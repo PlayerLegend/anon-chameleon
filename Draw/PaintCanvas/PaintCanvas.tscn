@@ -18,7 +18,7 @@ outline_material = ExtResource("3_a37mg")
 
 [node name="AccumulateViewport" type="SubViewport" parent="." unique_id=28685647 node_paths=PackedStringArray("paint_viewport", "stamp_rect")]
 own_world_3d = true
-size = Vector2i(1024, 1024)
+size = Vector2i(256, 256)
 script = ExtResource("2_n5q5k")
 paint_viewport = NodePath("PaintViewport")
 stamp_rect = NodePath("StampRect")
