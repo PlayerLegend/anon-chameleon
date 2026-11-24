@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dk6x0t6tydaqe"]
+
+[ext_resource type="Script" uid="uid://cgexjgprkgq77" path="res://Draw/test.gd" id="1_caliq"]
+[ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="2_1854s"]
+[ext_resource type="PackedScene" uid="uid://bi26venocqjak" path="res://Draw/ScreenSampler/ScreenSampler.tscn" id="4_kdtnq"]
+[ext_resource type="PackedScene" uid="uid://tc04yg80cioy" path="res://Draw/PaintCanvas/PaintCanvas.tscn" id="5_mj4od"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_otbpq"]
+viewport_path = NodePath("AccumulateViewport/PaintViewport")
+
+[node name="Node3D" type="Node3D" unique_id=929948092 node_paths=PackedStringArray("pan_center", "pan_camera")]
+script = ExtResource("1_caliq")
+pan_center = NodePath("Marker3D")
+pan_camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1114062604]
+transform = Transform3D(0.24791919, -0.36628497, 0.8968676, 0.0030187294, 0.926057, 0.37737164, -0.96877605, -0.09085026, 0.23069301, 0.8801533, 1.0183583, 0.40788692)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=879881846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3389665, 0.688185, 0)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1061479994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0763414, 1.37637, 0)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=393119402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33536866, 0)
+
+[node name="ScreenSampler" parent="." unique_id=1643424331 node_paths=PackedStringArray("camera") instance=ExtResource("4_kdtnq")]
+camera = NodePath("../Camera3D")
+
+[node name="PaintCanvas" parent="." unique_id=585572917 node_paths=PackedStringArray("mesh_instance") instance=ExtResource("5_mj4od")]
+mesh_instance = NodePath("../PinkiePie/rig/Skeleton3D/Circle")
+
+[node name="PinkiePie" parent="." unique_id=1415187252 instance=ExtResource("2_1854s")]
+
+[node name="DebugStamp" type="TextureRect" parent="." unique_id=1652268622]
+offset_right = 293.0
+offset_bottom = 187.0
+texture = SubResource("ViewportTexture_otbpq")
+expand_mode = 1
+
+[editable path="PinkiePie"]

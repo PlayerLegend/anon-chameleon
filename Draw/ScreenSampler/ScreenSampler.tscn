@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bi26venocqjak"]
+
+[ext_resource type="Script" uid="uid://dfxue8i8jmmjx" path="res://Draw/ScreenSampler/screen.gd" id="1_t8u8o"]
+[ext_resource type="Script" uid="uid://j2lpjl1aga55" path="res://Draw/ScreenSampler/unshaded_viewport.gd" id="3_6bw3h"]
+[ext_resource type="Environment" uid="uid://1m0ugl5i47id" path="res://Draw/ScreenSampler/UnshadedEnvironment.tres" id="4_asvpw"]
+[ext_resource type="Script" uid="uid://b50qcqnfqntgk" path="res://Draw/sync_camera.gd" id="4_gt02k"]
+[ext_resource type="Material" uid="uid://c8nk432t44g07" path="res://Draw/PaintCanvas/UnwrapMaterial.tres" id="6_cfoia"]
+[ext_resource type="Script" uid="uid://dkvxhx1pfo78n" path="res://Draw/ScreenSampler/depth_viewport.gd" id="6_l5fiw"]
+[ext_resource type="Material" uid="uid://c3c5x0ovqwe4i" path="res://Draw/WorldPositionShader/WorldPositionMaterial.tres" id="6_m38se"]
+[ext_resource type="Script" uid="uid://daq4g887ygnk3" path="res://Draw/ScreenSampler/position_camera.gd" id="7_ochlr"]
+
+[node name="ScreenSampler" type="Node" unique_id=1643424331]
+script = ExtResource("1_t8u8o")
+unwrap_material = ExtResource("6_cfoia")
+
+[node name="UnshadedViewport" type="SubViewport" parent="." unique_id=1057623988]
+own_world_3d = true
+script = ExtResource("3_6bw3h")
+metadata/_custom_type_script = "uid://cbw7ntowe1waj"
+
+[node name="UnshadedCamera" type="Camera3D" parent="UnshadedViewport" unique_id=1332072523]
+environment = ExtResource("4_asvpw")
+current = true
+script = ExtResource("4_gt02k")
+metadata/_custom_type_script = "uid://b50qcqnfqntgk"
+
+[node name="PositionViewport" type="SubViewport" parent="." unique_id=715209196]
+own_world_3d = true
+script = ExtResource("6_l5fiw")
+position_material = ExtResource("6_m38se")
+unwrap_material = ExtResource("6_cfoia")
+metadata/_custom_type_script = "uid://cbw7ntowe1waj"
+
+[node name="PositionCamera" type="Camera3D" parent="PositionViewport" unique_id=561661228]
+environment = ExtResource("4_asvpw")
+current = true
+script = ExtResource("7_ochlr")
+position_material = ExtResource("6_m38se")
+unwrap_material = ExtResource("6_cfoia")
+metadata/_custom_type_script = "uid://b50qcqnfqntgk"

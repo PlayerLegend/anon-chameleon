@@ -1,4 +1,6 @@
 extends Node3D
+@onready var screen_sampler: ScreenSampler = $ScreenSampler
+@onready var pinkie_pie: Node3D = $PinkiePie
 
 @export var pan_center: Node3D
 @export var pan_camera: Camera3D
@@ -8,13 +10,15 @@ extends Node3D
 @export var max_pitch_deg := 85.0
 var _orbit_last_mouse := Vector2.ZERO
 var _was_orbiting := false
-@onready var draw_tex: DrawTex = $DrawTex
+@onready var paint_canvas: PaintCanvas = $PaintCanvas
+@onready var debug_stamp: TextureRect = $DebugStamp
 
 func _process_painting():
-    if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-        draw_tex.start_painting()
-    else:
-        draw_tex.stop_painting()
+    paint_canvas.painting = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
+func _ready():
+    screen_sampler.add_visible(pinkie_pie)
+    debug_stamp.texture = paint_canvas.paint_texture
 
 func _process_orbit():
     var orbiting := Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)

@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://c8nk432t44g07"]
-
-[ext_resource type="Shader" uid="uid://c7s7m0eq6g5tb" path="res://Draw/UnwrapMaterial.gdshader" id="1_m6gtd"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_m6gtd")

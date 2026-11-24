@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://tc04yg80cioy"]
+
+[ext_resource type="Script" uid="uid://bx30x2mfhypol" path="res://Draw/PaintCanvas/paint_canvas.gd" id="1_nnevm"]
+[ext_resource type="Material" uid="uid://c2eydaw0d8owf" path="res://Draw/PaintedMeshBase.tres" id="2_llf2j"]
+[ext_resource type="Script" uid="uid://o13t6udx222a" path="res://Draw/accumulate_viewport.gd" id="2_n5q5k"]
+[ext_resource type="Material" uid="uid://bfv06ywknvio5" path="res://Draw/PaintedMeshOutline.tres" id="3_a37mg"]
+[ext_resource type="Script" uid="uid://fvegc0p7sh35" path="res://Draw/paint_viewport.gd" id="3_llf2j"]
+[ext_resource type="Material" uid="uid://c8nk432t44g07" path="res://Draw/PaintCanvas/UnwrapMaterial.tres" id="4_a37mg"]
+[ext_resource type="Script" uid="uid://bh5xa6og6x26s" path="res://Draw/mesh_instance_sync.gd" id="5_bjp1j"]
+[ext_resource type="Material" uid="uid://d0tk6ov0r5ulm" path="res://Draw/PaintCanvas/StampRectGrow.tres" id="6_dm173"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uxeks"]
+
+[node name="PaintCanvas" type="Node" unique_id=585572917]
+script = ExtResource("1_nnevm")
+base_material = ExtResource("2_llf2j")
+outline_material = ExtResource("3_a37mg")
+
+[node name="AccumulateViewport" type="SubViewport" parent="." unique_id=28685647 node_paths=PackedStringArray("paint_viewport", "stamp_rect")]
+own_world_3d = true
+size = Vector2i(1024, 1024)
+script = ExtResource("2_n5q5k")
+paint_viewport = NodePath("PaintViewport")
+stamp_rect = NodePath("StampRect")
+
+[node name="PaintViewport" type="SubViewport" parent="AccumulateViewport" unique_id=986887389]
+own_world_3d = true
+script = ExtResource("3_llf2j")
+
+[node name="UnwrapCamera" type="Camera3D" parent="AccumulateViewport/PaintViewport" unique_id=2061597390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8651321)
+current = true
+
+[node name="UnwrapMesh" type="MeshInstance3D" parent="AccumulateViewport/PaintViewport" unique_id=1226958163]
+material_override = ExtResource("4_a37mg")
+mesh = SubResource("CapsuleMesh_uxeks")
+script = ExtResource("5_bjp1j")
+metadata/_custom_type_script = "uid://bh5xa6og6x26s"
+
+[node name="StampRect" type="TextureRect" parent="AccumulateViewport" unique_id=701721607]
+material = ExtResource("6_dm173")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

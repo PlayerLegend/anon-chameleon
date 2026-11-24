@@ -2,6 +2,8 @@ extends SubViewport
 @export var paint_viewport: SubViewport
 @export var stamp_rect: TextureRect
 
+
+
 func _ready():
     transparent_bg = true
     disable_3d = true
@@ -11,16 +13,15 @@ func _ready():
     stamp_rect.texture = paint_viewport.get_texture()
     stamp_rect.size = Vector2(size)
 
-var _painting: bool
-
-func start_painting():
-    if not _painting:
-        paint_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-        render_target_update_mode = SubViewport.UPDATE_ALWAYS
-        _painting = true
-
-func stop_painting():
-    if _painting:
-        paint_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-        render_target_update_mode = SubViewport.UPDATE_DISABLED
-        _painting = false
+var painting: bool:
+    set(value):
+        if painting == value:
+            return
+            
+        painting = value
+        paint_viewport.painting = painting
+            
+        if painting:
+            render_target_update_mode = SubViewport.UPDATE_ALWAYS
+        else:
+            render_target_update_mode = SubViewport.UPDATE_DISABLED

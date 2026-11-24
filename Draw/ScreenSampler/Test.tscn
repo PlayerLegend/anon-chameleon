@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://duklk6nbyfy2n"]
+
+[ext_resource type="PackedScene" uid="uid://bi26venocqjak" path="res://Draw/ScreenSampler/ScreenSampler.tscn" id="1_ma2m7"]
+[ext_resource type="Script" uid="uid://kai6fn2jl1vi" path="res://Draw/ScreenSampler/test.gd" id="1_tlhyd"]
+[ext_resource type="PackedScene" uid="uid://c1djnxv0ttqfd" path="res://PinkiePie.glb" id="2_tlhyd"]
+
+[node name="Test" type="Node3D" unique_id=2065563318]
+script = ExtResource("1_tlhyd")
+
+[node name="ScreenSampler" parent="." unique_id=1643424331 instance=ExtResource("1_ma2m7")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=863848906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6528973, 0)
+
+[node name="PinkiePie" parent="." unique_id=1415187252 instance=ExtResource("2_tlhyd")]
+transform = Transform3D(0.52586466, 0, -0.85056823, 0, 1, 0, 0.85056823, 0, 0.52586466, 0, 0, -1.1309938)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1559257796]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UnshadedScreen" type="TextureRect" parent="HBoxContainer" unique_id=1438079848]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+
+[node name="PositionScreen" type="TextureRect" parent="HBoxContainer" unique_id=135494661]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1

@@ -1,9 +1,8 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled;
 
-#include "WorldPositionTexture.gdshaderinc"
+#include "res://Draw/WorldPositionShader/WorldPosition.gdshaderinc"
 
-uniform sampler2D depth_texture : filter_nearest;
 uniform vec2 cursor_uv;
 
 varying vec3 world_pos;
@@ -12,10 +11,9 @@ varying flat float hit;
 
 void vertex() {
     world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-
-    vec4 s = textureLod(depth_texture, cursor_uv, 0.0);
-    cursor_world_pos = world_position_decode(s.rgb);
-    hit = s.a;
+    vec4 sample = world_position_sample(cursor_uv);
+    cursor_world_pos = sample.xyz;
+    hit = sample.a;
 
     POSITION = vec4(UV * 2.0 - 1.0, 1.0, 1.0);
 }

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://d0tk6ov0r5ulm"]
 
-[ext_resource type="Shader" uid="uid://5vi6vjti0hh0" path="res://Draw/StampRectGrow.gdshader" id="1_6hk7c"]
+[ext_resource type="Shader" uid="uid://5vi6vjti0hh0" path="res://Draw/PaintCanvas/StampRectGrow.gdshader" id="1_6hk7c"]
 
 [resource]
 shader = ExtResource("1_6hk7c")
