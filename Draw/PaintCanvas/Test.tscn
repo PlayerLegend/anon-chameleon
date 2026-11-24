@@ -8,6 +8,9 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_otbpq"]
 viewport_path = NodePath("AccumulateViewport/PaintViewport")
 
+[sub_resource type="Environment" id="Environment_qdswm"]
+ambient_light_source = 1
+
 [node name="Node3D" type="Node3D" unique_id=929948092 node_paths=PackedStringArray("pan_center", "pan_camera")]
 script = ExtResource("1_caliq")
 pan_center = NodePath("Marker3D")
@@ -39,5 +42,8 @@ offset_right = 293.0
 offset_bottom = 187.0
 texture = SubResource("ViewportTexture_otbpq")
 expand_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1823493056]
+environment = SubResource("Environment_qdswm")
 
 [editable path="PinkiePie"]

@@ -4,7 +4,6 @@ extends SubViewport
 @export var resolution_scale: float = 1.0
 
 func _process(_delta: float):
-    var win := get_tree().root.get_visible_rect().size
-    var s := Vector2i(win * resolution_scale)
-    if s != size:
-        size = s
+    var new_size := Vector2i(get_window().size * resolution_scale)
+    if new_size != size:
+        size = new_size

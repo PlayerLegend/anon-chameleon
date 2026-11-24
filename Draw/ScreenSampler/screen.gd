@@ -5,7 +5,6 @@ extends Node
 @onready var unshaded_viewport: SubViewport = $UnshadedViewport
 @onready var unshaded_camera: SyncCamera = $UnshadedViewport/UnshadedCamera
 @onready var position_camera: SyncCamera = $PositionViewport/PositionCamera
-@export var unwrap_material: ShaderMaterial
 
 func _deferred_set_cameras():
     unshaded_camera.copy = camera
@@ -31,13 +30,3 @@ func add_visible(node: Node):
         position_viewport.add_meshinstance(node)
     for child in node.get_children():
         add_visible(child)
-
-func _process(_delta: float):
-    unwrap_material.set_shader_parameter("cursor_uv", _get_cursor_uv())
-    
-func _get_cursor_uv() -> Vector2:
-    var mouse_pos: Vector2 = get_viewport().get_mouse_position()
-    var viewport_size: Vector2 = get_viewport().get_visible_rect().size
-    var cursor_uv: Vector2 = mouse_pos / viewport_size
-    return cursor_uv
- 
